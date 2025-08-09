@@ -1,0 +1,105 @@
+// Language switching functionality
+let currentLang = 'en';
+
+function switchLanguage(lang) {
+    currentLang = lang;
+    const elements = document.querySelectorAll('[data-en][data-id]');
+    
+    elements.forEach(element => {
+        if (lang === 'en') {
+            element.textContent = element.getAttribute('data-en');
+        } else if (lang === 'id') {
+            element.textContent = element.getAttribute('data-id');
+        }
+    });
+    
+    // Update active language button
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.getAttribute('data-lang') === lang) {
+            btn.classList.add('active');
+        }
+    });
+    
+    // Save language preference
+    localStorage.setItem('preferred-language', lang);
+}
+
+// Language button event listeners
+function initLanguageSwitcher() {
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const lang = btn.getAttribute('data-lang');
+            switchLanguage(lang);
+        });
+    });
+}
+
+// Load saved language preference
+function loadLanguagePreference() {
+    const savedLang = localStorage.getItem('preferred-language') || 'en';
+    switchLanguage(savedLang);
+}
+
+// Smooth scrolling for navigation links
+function initSmoothScrolling() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+}
+
+// Fade in animation on scroll
+function initScrollAnimations() {
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-in').forEach(el => {
+        observer.observe(el);
+    });
+}
+
+// Header background change on scroll
+function initHeaderAnimation() {
+    window.addEventListener('scroll', () => {
+        const header = document.querySelector('header');
+        if (window.scrollY > 100) {
+            header.style.background = 'rgba(102, 126, 234, 0.95)';
+        } else {
+            header.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+        }
+    });
+}
+
+// Service cards floating animation
+function initServiceCardsAnimation() {
+    const serviceCards = document.querySelectorAll('.service-card');
+    serviceCards.forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.2}s`;
+        card.style.animation = 'fadeInUp 0.6s ease forwards';
+    });
+}
+
+// Initialize all functionality when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    initLanguageSwitcher();
+    loadLanguagePreference();
+    initSmoothScrolling();
+    initScrollAnimations();
+    initHeaderAnimation();
+    initServiceCardsAnimation();
+});
