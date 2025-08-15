@@ -37,6 +37,8 @@ function initLanguageSwitcher() {
 
 // Load saved language preference
 function loadLanguagePreference() {
+    const savedLang = localStorage.getItem('preferred-language') || 'id';
+    console.log("Switching language to:", savedLang);
     switchLanguage('id');
 }
 
@@ -101,8 +103,8 @@ function openEmailTab(event) {
 
 // Initialize all functionality when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
-    initLanguageSwitcher();
     loadLanguagePreference();
+    initLanguageSwitcher();
     initSmoothScrolling();
     initScrollAnimations();
     initHeaderAnimation();
