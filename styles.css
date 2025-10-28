@@ -96,46 +96,119 @@ nav a:hover {
     position: relative;
     background: linear-gradient(135deg, #667eea, #764ba2);
     color: white;
-    padding: 150px 0 100px;
+    padding: 150px 0 200px;
     text-align: center;
     overflow: hidden;
 }
 
-/* Gelombang 1 */
-.hero::before {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 200%;
-    height: 200px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 100%;
-    animation: wave1 8s linear infinite;
-}
+/* ==========================================
+   HERO SECTION - PURPLE ENERGY WAVE + SPARKLES
+   ========================================== */
 
-/* Gelombang 2 */
-.hero::after {
+   /* .hero {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: #fff;
+  } */
+
+  .hero {
+    position: relative;
+    display: flex;
+    /* justify-content: center;   horizontal center */
+    align-items: center;       /* vertical center */
+    min-height: 100vh;         /* full viewport height */
+    /* text-align: center;        optional: center text */
+    overflow: hidden;
+}
+  
+  /* Gelombang Energi 1 */
+  .hero::before {
     content: "";
     position: absolute;
-    bottom: 20px;
+    bottom: -50px;
     left: -50%;
     width: 200%;
-    height: 200px;
-    background: rgba(255, 255, 255, 0.15);
+    height: 250px;
+    background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.35), rgba(102, 126, 234, 0.25), transparent 80%);
     border-radius: 100%;
-    animation: wave2 12s linear infinite;
-}
-
-@keyframes wave1 {
-    from { transform: translateX(0) rotate(0deg); }
-    to { transform: translateX(-50%) rotate(360deg); }
-}
-
-@keyframes wave2 {
-    from { transform: translateX(0) rotate(0deg); }
-    to { transform: translateX(50%) rotate(-360deg); }
-}
+    filter: blur(40px);
+    opacity: 0.7;
+    animation: energyWave1 10s ease-in-out infinite alternate;
+  }
+  
+  /* Gelombang Energi 2 */
+  .hero::after {
+    content: "";
+    position: absolute;
+    bottom: -80px;
+    left: -50%;
+    width: 200%;
+    height: 300px;
+    background: radial-gradient(circle at 50% 50%, rgba(118, 75, 162, 0.3), rgba(255, 255, 255, 0.1), transparent 80%);
+    border-radius: 100%;
+    filter: blur(50px);
+    opacity: 0.6;
+    animation: energyWave2 14s ease-in-out infinite alternate;
+  }
+  
+  /* =======================
+     SPARKLE PARTICLES EFFECT
+     ======================= */
+  
+  .hero .sparkle {
+    position: absolute;
+    bottom: 0;
+    width: 4px;
+    height: 4px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.8;
+    filter: blur(1px);
+    animation: sparkleFloat 6s linear infinite;
+  }
+  
+  /* Beberapa variasi posisi dan durasi */
+  .hero .sparkle:nth-child(1) { left: 10%; animation-duration: 5s; }
+  .hero .sparkle:nth-child(2) { left: 30%; animation-duration: 7s; }
+  .hero .sparkle:nth-child(3) { left: 50%; animation-duration: 6.5s; }
+  .hero .sparkle:nth-child(4) { left: 70%; animation-duration: 8s; }
+  .hero .sparkle:nth-child(5) { left: 85%; animation-duration: 5.5s; }
+  
+  /* Animasi partikel naik */
+  @keyframes sparkleFloat {
+    0% {
+      transform: translateY(0) scale(1);
+      opacity: 0.9;
+    }
+    50% {
+      opacity: 1;
+      transform: translateY(-100px) scale(1.2);
+    }
+    100% {
+      transform: translateY(-200px) scale(0.8);
+      opacity: 0;
+    }
+  }
+  
+  /* Animasi Gelombang */
+  @keyframes energyWave1 {
+    0% { transform: translateX(0) scale(1); opacity: 0.5; }
+    50% { transform: translateX(-25%) scale(1.1); opacity: 0.8; }
+    100% { transform: translateX(25%) scale(1); opacity: 0.5; }
+  }
+  
+  @keyframes energyWave2 {
+    0% { transform: translateX(0) scale(1); opacity: 0.4; }
+    50% { transform: translateX(30%) scale(1.15); opacity: 0.7; }
+    100% { transform: translateX(-30%) scale(1); opacity: 0.4; }
+  }
+  
+  .hero::before,
+  .hero::after {
+    mix-blend-mode: screen;
+  }
+  
 
 /* Hero Content */
 .hero-content {
