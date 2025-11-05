@@ -95,7 +95,7 @@ function initServiceCardsAnimation() {
 
 function openEmailTab(event) {
     event.preventDefault();
-    const mailUrl = "mailto:jokiunityd@gmail.com?subject=Order%20Jasa%20Game%20Unity%202D&body=Halo,%20saya%20tertarik%20dengan%20jasa%20game%20Unity%202D%20Anda.";
+    const mailUrl = "mailto:jokiunity@gmail.com?subject=Order%20Jasa%20Game%20Unity%20&body=Halo,%20saya%20tertarik%20dengan%20jasa%20game%20Unity%20Anda.";
     window.open(mailUrl, "_blank");
 }
 
